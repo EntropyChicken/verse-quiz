@@ -1,0 +1,48 @@
+:root {
+    color-scheme: dark;
+    background: #140a37;
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overscroll-behavior: none;
+    background: #140a37;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100dvh;
+    padding-top: env(safe-area-inset-top);
+    padding-right: env(safe-area-inset-right);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    font-family: Verdana, Arial, sans-serif;
+}
+
+#app {
+    width: min(100%, 600px);
+    line-height: 0;
+}
+
+#quiz-canvas {
+    display: block;
+    width: 100% !important;
+    height: auto !important;
+    max-width: 600px;
+    margin: 0 auto;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+}

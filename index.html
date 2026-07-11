@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+    <meta name="theme-color" content="#140a37">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Verse Quiz">
+
+    <title>Verse Study Quiz</title>
+
+    <link rel="manifest" href="./manifest.webmanifest">
+    <link rel="apple-touch-icon" href="./icons/icon-192.png">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <main id="app" aria-label="Verse Study Quiz"></main>
+
+    <!-- Keep p5 local so the service worker can cache the entire app. -->
+    <script src="./libraries/p5.min.js"></script>
+    <!-- p5.sound is not used, so it is intentionally not loaded. -->
+    <script src="./sketch.js"></script>
+
+    <script>
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", function () {
+                navigator.serviceWorker.register("./service-worker.js").catch(function (error) {
+                    console.error("Service worker registration failed:", error);
+                });
+            });
+        }
+    </script>
+</body>
+</html>
