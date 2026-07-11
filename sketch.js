@@ -187,8 +187,8 @@ Function.prototype.new = function(){
 
 // Compatibility aliases let the original ProcessingJS-style drawing code
 // run with regular p5.js while keeping the quiz logic unchanged.
-var pushMatrix = function(){ push(); };
-var popMatrix = function(){ pop(); };
+var push = function(){ push(); };
+var pop = function(){ pop(); };
 var pushStyle = function(){ push(); };
 var popStyle = function(){ pop(); };
 var createFont = function(fontName){ return fontName; };
@@ -470,12 +470,12 @@ var Particle = function(col,rad,x,y,xv,yv){
     this.rotateRate = (floor(random(0,2))*2-1)*random(3,8);
 };
 Particle.prototype.exist = function(id){
-    pushMatrix();
+    push();
     translate(this.x,this.y);
     rotate(this.ang);
     fill(this.col[0],this.col[1],this.col[2],200);
     rect(-this.rad,-this.rad*1.3,this.rad*2,this.rad*2.6);
-    popMatrix();
+    pop();
     
     this.x+=this.xv;
     this.y+=this.yv;
@@ -1384,7 +1384,7 @@ var bottomBar = function(){
     rect(0,450,600,50);
     
     // previous
-    pushMatrix();
+    push();
     translate(90,475);
     if(dist(mouse.x,mouse.y,90,485)<25){
         cursor("pointer");
@@ -1398,10 +1398,10 @@ var bottomBar = function(){
         arrowIcon(backCol,lerpColor(iconCol,backCol,-0.5));
     }
     else{arrowIcon(backCol,iconCol);}
-    popMatrix();
+    pop();
     
     // home
-    pushMatrix();
+    push();
     translate(40,475);
     if(dist(mouse.x,mouse.y,40,485)<25){
         cursor("pointer");
@@ -1415,10 +1415,10 @@ var bottomBar = function(){
         houseIcon(backCol,lerpColor(iconCol,backCol,-0.5));
     }
     else{houseIcon(backCol,iconCol);}
-    popMatrix();
+    pop();
     
     // ... the thing you were at, before you pressed previous
-    pushMatrix();
+    push();
     translate(140,475);
     scale(-1,1);
     if(dist(mouse.x,mouse.y,140,485)<25){
@@ -1433,7 +1433,7 @@ var bottomBar = function(){
         arrowIcon(backCol,lerpColor(iconCol,backCol,-0.5));
     }
     else{arrowIcon(backCol,iconCol);}
-    popMatrix();
+    pop();
     
     noStroke();
     rectMode(CENTER);
@@ -1680,7 +1680,7 @@ function setup(){
 }
 
 draw = function(){
-    pushMatrix();
+    push();
     scale(width/600,height/500);
     
     if(ganime<360){ganime++;}
@@ -1710,7 +1710,7 @@ draw = function(){
     applyTheme(theme);
     
     background(theme.backgroundColor);
-    pushMatrix();
+    push();
     // scale(height/500);
 
     if(inp[10]){
@@ -1810,12 +1810,12 @@ draw = function(){
         cursorBlinkTimer = 0;
     }
     
-    popMatrix();
+    pop();
     
     mouseNature();
     
     //println("");
-    popMatrix();
+    pop();
 };
 
 var lastTouchStartedAt = -1000;
