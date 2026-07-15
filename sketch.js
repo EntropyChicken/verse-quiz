@@ -2019,8 +2019,7 @@ function draw(){
             } else {
                 fill(theme.incorrectColor);
             }
-            let rad = 20;
-            ellipse(width - 2 * rad, 2 * rad, rad, rad); 
+            ellipse(600 - 60, 60, 30, 30); 
             pop();
         }
     }
