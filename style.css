@@ -19,13 +19,22 @@ body {
     background: #140a37;
 }
 
+/* Default layout: Center everything (great for laptops and landscape phones) */
 body {
     display: flex;
     justify-content: center;
-    align-items: center; /* Center vertically for a cleaner laptop experience */
+    align-items: center; 
     min-height: 100dvh;
     padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
     font-family: Verdana, Arial, sans-serif;
+}
+
+/* Portrait Mode: If the screen is taller than it is wide, align to the top */
+@media (orientation: portrait) {
+    body {
+        align-items: flex-start; /* Aligns the canvas to the top */
+        padding-top: calc(env(safe-area-inset-top) + 10px); /* Leaves a small, safe gap at the very top */
+    }
 }
 
 #app {
