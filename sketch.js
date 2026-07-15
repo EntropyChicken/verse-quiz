@@ -2120,6 +2120,7 @@ function touchEnded(){
 };
 
 function speak(txt) {
+    background(0,255,0);
     if(txt.length >= 3 && txt[1] === " " && txt[2] >= "A" && txt[2] <= "Z"){
         if(txt[0]==="1"){
             txt = "first"+txt.substring(1);
