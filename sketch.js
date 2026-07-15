@@ -1541,85 +1541,118 @@ var bottomBar = function(){
 };
 
 var studySetsList = function(){
-    textSize(15);
-    textAlign(LEFT,TOP);
+    noStroke();
+    textAlign(LEFT, TOP);
     
-    // switch questions and answers
+    var marginX = 10;
+    var paddingX = 5;
+    
+    // for the swapper
+    var switchY = 10;
+    var switchHeight = 24;
+    var switchTextOffsetY = 4; // centers text vertically inside the button
+    textSize(17);
+
     {
-    var txt = "Switch Questions and Answers";
-    stroke(theme.chillerColor);
-    strokeWeight(2);
-    noFill();
-    rect(10,10,textWidth(txt)+10,30);
-    fill(theme.chillColor);
-    text(txt,15,15);
-    if(mouse.x<26+textWidth(txt)&&mouse.y>10&&mouse.y<=50){
-        // exists more
-        noFill();
-        stroke(theme.chillColor);
-        strokeWeight(2);
-        rect(10,10,textWidth(txt)+10,30);
-        fill(theme.chillColor);
-        text(txt,15,15.5);
-        if(mouse.status==="clicking"||mouse.status==="pressing"){
-            if(mouse.status==="clicking"){
-                for(var i = 0; i<studySet.length; i++){
-                    var swapper = studySet[i].a;
-                    studySet[i].a=studySet[i].b;
-                    studySet[i].b = swapper;
-                }
-                //resetSessionStats(); // idk maybe do this
-                mouse.status="was clicking";
-            }
-            // even more existingness
-            text(txt,14.5,15);
-            text(txt,15.5,15);
-            noFill();
-            strokeWeight(2.5);
-            stroke(lerpColor(theme.chillColor,theme.backgroundColor,-0.2));
-            rect(10,10,textWidth(txt)+10,30);
-        }
-    }
-    }
-    
-    
-    textSize(11);
-    
-    // normal draw
-    for(var i = 0; i<studySetSet.length; i++){
+        var txt = "Swap Questions and Answers";
+        var btnWidth = textWidth(txt) + (paddingX * 2);
+        
         stroke(theme.chillerColor);
         strokeWeight(2);
         noFill();
-        rect(10,50+i*14,textWidth(studySetSet[i].name)+10,14);
+        rect(marginX, switchY, btnWidth, switchHeight);
         fill(theme.chillColor);
-        text(studySetSet[i].name,15,50+i*14);
-    }
-    // mouse interaction
-    for(var i = 0; i<studySetSet.length; i++){
-        // check for being hovered over
-        if(mouse.x<26+textWidth(studySetSet[i].name)&&mouse.y>48+i*14&&mouse.y<=62+i*14){
-            // exists more
+        noStroke();
+        text(txt, marginX + paddingX, switchY + switchTextOffsetY);
+        
+        // Hover and Click Detection
+        if (mouse.x >= marginX && mouse.x <= marginX + btnWidth &&
+            mouse.y >= switchY && mouse.y <= switchY + switchHeight) {
+            
             noFill();
             stroke(theme.chillColor);
             strokeWeight(2);
-            rect(10,50+i*14,textWidth(studySetSet[i].name)+10,14);
+            rect(marginX, switchY, btnWidth, switchHeight);
             fill(theme.chillColor);
-            text(studySetSet[i].name,15,50+i*14);
-            if(mouse.status==="clicking"||mouse.status==="pressing"){
-                if(mouse.status==="clicking"){
+            noStroke();
+            text(txt, marginX + paddingX, switchY + switchTextOffsetY + 0.5);
+            
+            if (mouse.status === "clicking" || mouse.status === "pressing") {
+                if (mouse.status === "clicking") {
+                    for (var i = 0; i < studySet.length; i++) {
+                        var swapper = studySet[i].a;
+                        studySet[i].a = studySet[i].b;
+                        studySet[i].b = swapper;
+                    }
+                    mouse.status = "was clicking";
+                }
+                // Click visual feedback (bolding/shadow effect)
+                text(txt, marginX + paddingX - 0.5, switchY + switchTextOffsetY);
+                text(txt, marginX + paddingX + 0.5, switchY + switchTextOffsetY);
+                noFill();
+                strokeWeight(2.5);
+                stroke(lerpColor(theme.chillColor, theme.backgroundColor, -0.2));
+                rect(marginX, switchY, btnWidth, switchHeight);
+            }
+        }
+    }
+    
+    // for the actual list of sets' buttons
+    var spacingBetween = 10; // gap between "Swap" button and the list
+    var listStartY = switchY + switchHeight + spacingBetween; 
+    var itemHeight = 24;
+    var textOffsetY = 4;
+    textSize(17);
+    
+    // regular draw loop
+    for (var i = 0; i < studySetSet.length; i++) {
+        var currentY = listStartY + (i * itemHeight);
+        var label = studySetSet[i].name;
+        var boxWidth = textWidth(label) + (paddingX * 2);
+
+        stroke(theme.chillerColor);
+        strokeWeight(2);
+        noFill();
+        rect(marginX, currentY, boxWidth, itemHeight);
+        fill(theme.chillColor);
+        noStroke();
+        text(label, marginX + paddingX, currentY + textOffsetY);
+    }
+    
+    // mouse interaction loop
+    for (var i = 0; i < studySetSet.length; i++) {
+        var currentY = listStartY + (i * itemHeight);
+        var label = studySetSet[i].name;
+        var boxWidth = textWidth(label) + (paddingX * 2);
+
+        // check for being hovered over (using explicit bounding boxes)
+        if (mouse.x >= marginX && mouse.x <= marginX + boxWidth &&
+            mouse.y >= currentY && mouse.y <= currentY + itemHeight || studySet === studySetSet[i].studySet) {
+            
+            noFill();
+            stroke(theme.chillColor);
+            strokeWeight(2);
+            rect(marginX, currentY, boxWidth, itemHeight);
+            fill(theme.chillColor);
+            noStroke();
+            text(label, marginX + paddingX, currentY + textOffsetY);
+            
+            if ((mouse.status === "clicking" || mouse.status === "pressing") && mouse.x >= marginX && mouse.x <= marginX + boxWidth &&
+            mouse.y >= currentY && mouse.y <= currentY + itemHeight) {
+                if (mouse.status === "clicking") {
                     studySet = studySetSet[i].studySet;
                     groupSetLabels = studySetSet[i].groupSetLabels;
                     groupSetCanBeQuestion = studySetSet[i].groupSetCanBeQuestion;
                     resetSessionStats();
-                    mouse.status="was clicking";
+                    mouse.status = "was clicking";
                 }
-                // even more existingness
-                text(studySetSet[i].name,14.5,50+i*14);
-                text(studySetSet[i].name,15.5,50+i*14);
+                noStroke();
+                text(label, marginX + paddingX - 0.5, currentY + textOffsetY);
+                text(label, marginX + paddingX + 0.5, currentY + textOffsetY);
                 noFill();
                 strokeWeight(2.5);
-                stroke(lerpColor(theme.chillColor,theme.backgroundColor,-0.2));
-                rect(10,50+i*14,textWidth(studySetSet[i].name)+10,14);
+                stroke(lerpColor(theme.chillColor, theme.backgroundColor, -0.2));
+                rect(marginX, currentY, boxWidth, itemHeight);
             }
         }
     }
