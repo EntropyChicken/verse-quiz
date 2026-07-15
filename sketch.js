@@ -894,6 +894,14 @@ function loadWritingQuestion(){
     ));
     activeTextbox = textboxes[textboxes.length-1]; // less annoying than clicking on it every time
     pendingSpeech = studySet[questionID].a;
+    if (mobileTextInput) {
+        mobileTextInput.value = ""; // Ensure it's empty for the new question
+        try {
+            mobileTextInput.focus({ preventScroll: true });
+        } catch(e) {
+            mobileTextInput.focus();
+        }
+    }
 };
 function loadWritingRaceQuestion(){
     // clear stuff from previous question
@@ -973,6 +981,14 @@ function loadWritingRaceQuestion(){
         ));
         activeTextbox = textboxes[textboxes.length-1]; // less annoying than clicking on it every time
         pendingSpeech = studySet[questionID].a;
+        if (mobileTextInput) {
+            mobileTextInput.value = ""; // Ensure it's empty for the new question
+            try {
+                mobileTextInput.focus({ preventScroll: true });
+            } catch(e) {
+                mobileTextInput.focus();
+            }
+        }
     }
 };
 // function loadLearningQuestion(){};
