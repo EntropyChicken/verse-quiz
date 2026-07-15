@@ -2120,7 +2120,6 @@ function touchEnded(){
 };
 
 function speak(txt) {
-    flashes.push({col:theme.correctColor,opacity:80,fadeVelocity:-1});
     if(txt.length >= 3 && txt[1] === " " && txt[2] >= "A" && txt[2] <= "Z"){
         if(txt[0]==="1"){
             txt = "first"+txt.substring(1);
@@ -2138,7 +2137,12 @@ function speak(txt) {
         loadVoices();
     }
 
-    if (!('speechSynthesis' in window)) return;
+    if (!('speechSynthesis' in window)) {
+        flashes.push({col:theme.incorrectColor,opacity:80,fadeVelocity:-1});
+        return;
+    }
+    flashes.push({col:theme.correctColor,opacity:80,fadeVelocity:-1});
+
 
     speechSynthesis.cancel();
 
