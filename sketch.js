@@ -54,118 +54,10 @@ var sayCorrectAnswerWhenIncorrect = true;
 
 
 
-var studySetSet = [
-    {
-        name:"before message 1",
-        studySet:[
-            {a:"Acts 1:8",b:"But you shall receive power when the Holy Spirit comes upon you, and you shall be My witnesses both in Jerusalem and in all Judea and Samaria and unto the uttermost part of the earth."},
-            {a:"Acts 22:15",b:"For you will be a witness to Him unto all men of the things which you have seen and heard."},
-            {a:"Philippians 1:27",b:"Only, conduct yourselves in a manner worthy of the gospel of Christ, that whether coming and seeing you or being absent, I may hear of the things concerning you, that you stand firm in one spirit, with one soul striving together along with the faith of the gospel,"},
-        ]
-    },
-    {
-        name:"before message 3",
-        studySet:[
-            {a:"1 Timothy 2:7",b:"For which I was appointed a herald and an apostle (I speak the truth; I do not lie), a teacher of the Gentiles in faith and truth."},
-            {a:"Matthew 4:19",b:"And He said to them, Come after Me, and I will make you fishers of men."},
-            {a:"1 Corinthians 9:16",b:"For if I preach the gospel, I have no boast, for necessity is laid upon me; for woe to me if I do not preach the gospel."},
-        ]
-    },
-    {
-        name:"cumulative before message 3",
-        studySet:[
-            {a:"Acts 1:8",b:"But you shall receive power when the Holy Spirit comes upon you, and you shall be My witnesses both in Jerusalem and in all Judea and Samaria and unto the uttermost part of the earth."},
-            {a:"Acts 22:15",b:"For you will be a witness to Him unto all men of the things which you have seen and heard."},
-            {a:"Philippians 1:27",b:"Only, conduct yourselves in a manner worthy of the gospel of Christ, that whether coming and seeing you or being absent, I may hear of the things concerning you, that you stand firm in one spirit, with one soul striving together along with the faith of the gospel,"},
-            {a:"1 Timothy 2:7",b:"For which I was appointed a herald and an apostle (I speak the truth; I do not lie), a teacher of the Gentiles in faith and truth."},
-            {a:"Matthew 4:19",b:"And He said to them, Come after Me, and I will make you fishers of men."},
-            {a:"1 Corinthians 9:16",b:"For if I preach the gospel, I have no boast, for necessity is laid upon me; for woe to me if I do not preach the gospel."},
-        ]
-    },
-    {
-        name:"before message 5",
-        studySet:[
-            {a:"2 Corinthians 5:20",b:"On behalf of Christ then we are ambassadors, as God entreats you through us; we beseech you on behalf of Christ, Be reconciled to God."},
-            {a:"1 Corinthians 4:15",b:"For though you have ten thousand guides in Christ, yet you do not have many fathers; for in Christ Jesus I have begotten you through the gospel."},
-            {a:"Romans 15:16",b:"That I might be a minister of Christ Jesus to the Gentiles, a laboring priest of the gospel of God, in order that the offering of the Gentiles might be acceptable, having been sanctified in the Holy Spirit."},
-        ]
-    },
-    {
-        name:"cumulative before message 5",
-        studySet:[
-            {a:"Acts 1:8",b:"But you shall receive power when the Holy Spirit comes upon you, and you shall be My witnesses both in Jerusalem and in all Judea and Samaria and unto the uttermost part of the earth."},
-            {a:"Acts 22:15",b:"For you will be a witness to Him unto all men of the things which you have seen and heard."},
-            {a:"Philippians 1:27",b:"Only, conduct yourselves in a manner worthy of the gospel of Christ, that whether coming and seeing you or being absent, I may hear of the things concerning you, that you stand firm in one spirit, with one soul striving together along with the faith of the gospel,"},
-            {a:"1 Timothy 2:7",b:"For which I was appointed a herald and an apostle (I speak the truth; I do not lie), a teacher of the Gentiles in faith and truth."},
-            {a:"Matthew 4:19",b:"And He said to them, Come after Me, and I will make you fishers of men."},
-            {a:"1 Corinthians 9:16",b:"For if I preach the gospel, I have no boast, for necessity is laid upon me; for woe to me if I do not preach the gospel."},
-            {a:"2 Corinthians 5:20",b:"On behalf of Christ then we are ambassadors, as God entreats you through us; we beseech you on behalf of Christ, Be reconciled to God."},
-            {a:"1 Corinthians 4:15",b:"For though you have ten thousand guides in Christ, yet you do not have many fathers; for in Christ Jesus I have begotten you through the gospel."},
-            {a:"Romans 15:16",b:"That I might be a minister of Christ Jesus to the Gentiles, a laboring priest of the gospel of God, in order that the offering of the Gentiles might be acceptable, having been sanctified in the Holy Spirit."},
-        ]
-    },
-    {
-        name:"before message 7",
-        studySet:[
-            {a:"John 15:4",b:"Abide in Me and I in you. As the branch cannot bear fruit of itself unless it abides in the vine, so neither can you unless you abide in Me."},
-            {a:"John 15:5",b:"I am the vine; you are the branches. He who abides in Me and I in him, he bears much fruit; for apart from Me you can do nothing."},
-            {a:"John 15:16",b:"You did not choose Me, but I chose you, and I set you that you should go forth and bear fruit and that your fruit should remain, that whatever you ask the Father in My name, He may give you."},
-        ]
-    },
-    {
-        name:"cumulative before message 7",
-        studySet:[
-            {a:"Acts 1:8",b:"But you shall receive power when the Holy Spirit comes upon you, and you shall be My witnesses both in Jerusalem and in all Judea and Samaria and unto the uttermost part of the earth."},
-            {a:"Acts 22:15",b:"For you will be a witness to Him unto all men of the things which you have seen and heard."},
-            {a:"Philippians 1:27",b:"Only, conduct yourselves in a manner worthy of the gospel of Christ, that whether coming and seeing you or being absent, I may hear of the things concerning you, that you stand firm in one spirit, with one soul striving together along with the faith of the gospel,"},
-            {a:"1 Timothy 2:7",b:"For which I was appointed a herald and an apostle (I speak the truth; I do not lie), a teacher of the Gentiles in faith and truth."},
-            {a:"Matthew 4:19",b:"And He said to them, Come after Me, and I will make you fishers of men."},
-            {a:"1 Corinthians 9:16",b:"For if I preach the gospel, I have no boast, for necessity is laid upon me; for woe to me if I do not preach the gospel."},
-            {a:"2 Corinthians 5:20",b:"On behalf of Christ then we are ambassadors, as God entreats you through us; we beseech you on behalf of Christ, Be reconciled to God."},
-            {a:"1 Corinthians 4:15",b:"For though you have ten thousand guides in Christ, yet you do not have many fathers; for in Christ Jesus I have begotten you through the gospel."},
-            {a:"Romans 15:16",b:"That I might be a minister of Christ Jesus to the Gentiles, a laboring priest of the gospel of God, in order that the offering of the Gentiles might be acceptable, having been sanctified in the Holy Spirit."},
-            {a:"John 15:4",b:"Abide in Me and I in you. As the branch cannot bear fruit of itself unless it abides in the vine, so neither can you unless you abide in Me."},
-            {a:"John 15:5",b:"I am the vine; you are the branches. He who abides in Me and I in him, he bears much fruit; for apart from Me you can do nothing."},
-            {a:"John 15:16",b:"You did not choose Me, but I chose you, and I set you that you should go forth and bear fruit and that your fruit should remain, that whatever you ask the Father in My name, He may give you."},
-        ]
-    },
-    {
-        name:"before message 8",
-        studySet:[
-            {a:"Revelation 21:2",b:"And I saw the holy city, New Jerusalem, coming down out of heaven from God, prepared as a bride adorned for her husband."},
-            {a:"Matthew 28:19",b:"Go therefore and disciple all the nations, baptizing them into the name of the Father and of the Son and of the Holy Spirit,"},
-            {a:"Revelation 22:14",b:"Blessed are those who wash their robes that they may have right to the tree of life and may enter by the gates into the city."},
-        ]
-    },
-    {
-        name:"cumulative before message 8",
-        studySet:[
-            {a:"Acts 1:8",b:"But you shall receive power when the Holy Spirit comes upon you, and you shall be My witnesses both in Jerusalem and in all Judea and Samaria and unto the uttermost part of the earth."},
-            {a:"Acts 22:15",b:"For you will be a witness to Him unto all men of the things which you have seen and heard."},
-            {a:"Philippians 1:27",b:"Only, conduct yourselves in a manner worthy of the gospel of Christ, that whether coming and seeing you or being absent, I may hear of the things concerning you, that you stand firm in one spirit, with one soul striving together along with the faith of the gospel,"},
-            {a:"1 Timothy 2:7",b:"For which I was appointed a herald and an apostle (I speak the truth; I do not lie), a teacher of the Gentiles in faith and truth."},
-            {a:"Matthew 4:19",b:"And He said to them, Come after Me, and I will make you fishers of men."},
-            {a:"1 Corinthians 9:16",b:"For if I preach the gospel, I have no boast, for necessity is laid upon me; for woe to me if I do not preach the gospel."},
-            {a:"2 Corinthians 5:20",b:"On behalf of Christ then we are ambassadors, as God entreats you through us; we beseech you on behalf of Christ, Be reconciled to God."},
-            {a:"1 Corinthians 4:15",b:"For though you have ten thousand guides in Christ, yet you do not have many fathers; for in Christ Jesus I have begotten you through the gospel."},
-            {a:"Romans 15:16",b:"That I might be a minister of Christ Jesus to the Gentiles, a laboring priest of the gospel of God, in order that the offering of the Gentiles might be acceptable, having been sanctified in the Holy Spirit."},
-            {a:"John 15:4",b:"Abide in Me and I in you. As the branch cannot bear fruit of itself unless it abides in the vine, so neither can you unless you abide in Me."},
-            {a:"John 15:5",b:"I am the vine; you are the branches. He who abides in Me and I in him, he bears much fruit; for apart from Me you can do nothing."},
-            {a:"John 15:16",b:"You did not choose Me, but I chose you, and I set you that you should go forth and bear fruit and that your fruit should remain, that whatever you ask the Father in My name, He may give you."},
-            {a:"Revelation 21:2",b:"And I saw the holy city, New Jerusalem, coming down out of heaven from God, prepared as a bride adorned for her husband."},
-            {a:"Matthew 28:19",b:"Go therefore and disciple all the nations, baptizing them into the name of the Father and of the Son and of the Holy Spirit,"},
-            {a:"Revelation 22:14",b:"Blessed are those who wash their robes that they may have right to the tree of life and may enter by the gates into the city."},
-        ]
-    },
-];
-
-
-
-
-
-var studySet = studySetSet[studySetSet.length-1].studySet;
-var groupSetLabels = studySetSet[studySetSet.length-1].groupSetLabels;
-var groupSetCanBeQuestion = studySetSet[studySetSet.length-1].groupSetCanBeQuestion;
+var studySetSet;
+var studySet;
+var groupSetLabels; // these are probably irrelevant now and no longer supported
+var groupSetCanBeQuestion;
 var sessionStats = []; // reset at end of starter frame
 
 
@@ -192,7 +84,7 @@ var pop = function(){ pop(); };
 var pushStyle = function(){ push(); };
 var popStyle = function(){ pop(); };
 var createFont = function(fontName){ return fontName; };
-var println = function(){ console.log.apply(console, arguments); };
+
                         }
 
 /** ~~~~~~~~~~~~~~~~~~~ Input ~~~~~~~~~~~~~~~~~~~ **/
@@ -491,7 +383,7 @@ var confettiBlast = function(count,x,y,xv,yv,spread){
     if(particles.length>250){
         count/=2;
         if(particles.length>800){
-            // println(random());
+            // console.log(random());
             return;
         }
     }
@@ -531,7 +423,7 @@ Box.prototype.display = function(){
     var showTxt = this.txt;
     if(activeTextbox===this){
         if(cursorBlinkTimer<cursorBlinkPeriod/2){
-            showTxt+="│"; // pretend cursor. (it's a special vertical bar character. replace it with "|" if it causes issues.)
+            showTxt+="│ "; // pretend cursor. (it's a special vertical bar character. replace it with "|" if it causes issues.)
         } // ganime%37 seems to be more accurate rate btw
         
         // this is annoying because it sometimes still considers it one word (to linebreak early) even if there's a space before the special char. i think the space is considered part of the word
@@ -788,7 +680,7 @@ var loadFourChoiceQuestion = function(){
                     break; // success
                 }
                 if(j===10000){
-                    println("Either you're super unlucky or RandomChicken needs to fix Error 1"); // we've tried 10000 randoms and they're all taken even though there should be at least 1 remaining choice
+                    console.log("Either you're super unlucky or RandomChicken needs to fix Error 1"); // we've tried 10000 randoms and they're all taken even though there should be at least 1 remaining choice
                     break;
                 }
             }
@@ -837,7 +729,7 @@ var loadFourChoiceQuestion = function(){
         boxes.push(Box.new(studySet[questionID][a]+" --> "+groupSetLabels[b],20,20,560,80,2,false,"question header"));
         
         if((studySet[questionID][b]===true)||(studySet[questionID][b]===false)){
-            // println(studySet[questionID][b]);
+            // console.log(studySet[questionID][b]);
             // true or false reponse
             // correct answer choice
             buttons.push(Button.new(
@@ -930,7 +822,7 @@ var loadFourChoiceQuestion = function(){
                         break; // success
                     }
                     if(j===10000){
-                        println("Either you're super unlucky or RandomChicken needs to fix Error 1"); // we've tried 10000 randoms and they're all taken even though there should be at least 1 remaining choice
+                        console.log("Either you're super unlucky or RandomChicken needs to fix Error 1"); // we've tried 10000 randoms and they're all taken even though there should be at least 1 remaining choice
                         break;
                     }
                 }
@@ -1317,13 +1209,13 @@ var isAcceptableAnswer = function(submittedAnswer,correctAnswer){
         correctAnswer = replaceSpanishChars(correctAnswer);
     }
     var s = submittedAnswer.trim().toLowerCase().replaceAll(deletableRegex,"");
-    // println(s);
+    // console.log(s);
     if(s[0]==='t'&&s[1]==='o'&&s[2]===' '){
         s=s.substring(3);
     }
     s = removeDuplicateSpaces(s);
     correctAnswer = correctAnswer.trim().toLowerCase().replaceAll(deletableRegex,"");
-    // println(correctAnswer);
+    // console.log(correctAnswer);
     var corrects = correctAnswer.split("/");
     corrects.push(correctAnswer);
     for(var i = 0; i<corrects.length; i++){
@@ -1337,6 +1229,41 @@ var isAcceptableAnswer = function(submittedAnswer,correctAnswer){
         }
     }
     return(false);
+};
+var isAcceptablePrefix = function(submittedPrefix, correctAnswer){
+    if(ignoreSpanishChars){
+        submittedPrefix = replaceSpanishChars(submittedPrefix);
+        correctAnswer = replaceSpanishChars(correctAnswer);
+    }
+    
+    // Replace leading spaces only. Trimming the end would falsely validate 
+    // trailing spaces (e.g., typing "the q " would match "the quick")
+    var s = submittedPrefix.replace(/^\s+/, '').toLowerCase().replaceAll(deletableRegex,"");
+    if(s.substring(0,3) === 'to '){
+        s = s.substring(3);
+    }
+    s = removeDuplicateSpaces(s);
+
+    // If the textbox is essentially empty after filtering, default to valid
+    if (s.length === 0) return true;
+
+    var cAns = correctAnswer.trim().toLowerCase().replaceAll(deletableRegex,"");
+    var corrects = cAns.split("/");
+    corrects.push(cAns);
+
+    for(var i = 0; i < corrects.length; i++){
+        var c = corrects[i].trim();
+        if(c.substring(0,3) === 'to '){
+            c = c.substring(3);
+        }
+        c = removeDuplicateSpaces(c);
+
+        // Check if the correct answer starts with the typed string
+        if(c.startsWith(s)){
+            return true;
+        }
+    }
+    return false;
 };
 
 var makeCorrectionPopup = function(wasQuestionID,userWrongAnswer){
@@ -1578,12 +1505,12 @@ var studySetSidePreview = function(){
         for(var i = 0; i<studySet.length; i++){
             textAlign(RIGHT,CENTER);
             var txt = studySet[i].a;
-            if(txt.length>33){txt=txt.substr(0,30)+"...";}
-            text(txt,445,225-menuListScroll+(i-(studySet.length/2-0.5))*20);
+            if(txt.length>23){txt=txt.substr(0,20)+"...";}
+            text(txt,380,225-menuListScroll+(i-(studySet.length/2-0.5))*20);
             textAlign(LEFT,CENTER);
             txt = studySet[i].b;
-            if(txt.length>23){txt=txt.substr(0,20)+"...";}
-            text(txt,465,225-menuListScroll+(i-(studySet.length/2-0.5))*20);
+            // if(txt.length>23){txt=txt.substr(0,20)+"...";} // don't need to cut off, just let it run off screen
+            text(txt,395,225-menuListScroll+(i-(studySet.length/2-0.5))*20);
         }
     }
 };
@@ -1663,7 +1590,15 @@ generateNextQuestionID = function(){
 };
                         }
 
+function preload() {
+    studySetSet = loadJSON('studySetSet.json');
+}
 function setup(){
+    studySetSet = Object.values(studySetSet);
+    studySet = studySetSet[studySetSet.length - 1].studySet;
+    groupSetLabels = studySetSet[studySetSet.length - 1].groupSetLabels;
+    groupSetCanBeQuestion = studySetSet[studySetSet.length - 1].groupSetCanBeQuestion;
+
     var canvas=createCanvas(600,500);
     canvas.parent("app");
     canvas.id("quiz-canvas");
@@ -1679,7 +1614,7 @@ function setup(){
     loadScreen(screen);
 }
 
-draw = function(){
+function draw(){
     push();
     scale(width/600,height/500);
     
@@ -1722,7 +1657,7 @@ draw = function(){
                 i--;
             }
         }
-        // println(action);
+        // console.log(action);
         if(!action){
             activeTextbox.onEnter();
         }
@@ -1795,6 +1730,21 @@ draw = function(){
         textboxes[i].interactWithMouse();
     }
     }
+
+    if ((screen === "write") && activeTextbox !== voidTextbox && activeTextbox.txt.length > 0) {
+        var isValid = isAcceptablePrefix(activeTextbox.txt, studySet[questionID].b);
+        push();
+        noStroke();
+        if (isValid) {
+            fill(theme.correctColor); // Green
+        } else {
+            fill(theme.incorrectColor); // Red
+        }
+        // Draw the circle in the middle of the screen/textbox
+        let rad = 20;
+        ellipse(width-2*rad, 2*rad, rad, rad); 
+        pop();
+    }
     
     bottomBar();
     
@@ -1814,7 +1764,7 @@ draw = function(){
     
     mouseNature();
     
-    //println("");
+    //console.log("");
     pop();
 };
 
