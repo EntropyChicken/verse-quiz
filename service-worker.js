@@ -1,4 +1,4 @@
-const CACHE_NAME = "verse-quiz-v15";
+const CACHE_NAME = "verse-quiz-v16";
 
 const APP_SHELL = [
     "./",
@@ -7,6 +7,7 @@ const APP_SHELL = [
     "./sketch.js",
     "./manifest.webmanifest",
     "./libraries/p5.min.js",
+    "./libraries/p5.sound.min.js",
 ];
 
 self.addEventListener("install", function (event) {
