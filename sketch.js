@@ -923,6 +923,7 @@ function loadWritingRaceQuestion(){
         }
         resetSessionStats();
         writeRaceTimer = -1;
+        pendingSpeech = "Congratulations";
     }
     else{
     
@@ -971,8 +972,8 @@ function loadWritingRaceQuestion(){
             "answer textbox"
         ));
         activeTextbox = textboxes[textboxes.length-1]; // less annoying than clicking on it every time
+        pendingSpeech = studySet[questionID].a;
     }
-    pendingSpeech = studySet[questionID].a;
 };
 // function loadLearningQuestion(){};
 
