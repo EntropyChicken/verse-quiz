@@ -46,8 +46,17 @@ var cursorBlinkTimer = 0, cursorBlinkPeriod = 60;
 var questionID = -1; // ngl i'm not sure why i didn't use this for the 4 button choice questions
 var questionQueue = [];
 var sayCorrectAnswerWhenIncorrect = true;
-var autoEnterIfCorrect = true;
+var autoEnterIfCorrect = false;
 var ignoreEnterTimer = 0;
+
+// snapshot of the original values, so the settings screen can offer a "Reset to Defaults" button
+var settingsDefaults = {
+    preventClashingAnswerChoices:preventClashingAnswerChoices,
+    ignoreSpanishChars:ignoreSpanishChars,
+    comboWindow:comboWindow,
+    choiceOptionDisplayLength:choiceOptionDisplayLength,
+    autoEnterIfCorrect:autoEnterIfCorrect
+};
                         }
 
 /** ~~~~~~~~~~~~~~~~ STUDY SETS ~~~~~~~~~~~~~~~~~ **/
@@ -972,6 +981,83 @@ var loadWritingRaceQuestion = function(){
 };
 // var loadLearningQuestion = function(){};
 
+/** ~~~~~~~~~~~~~~~~~~ Settings ~~~~~~~~~~~~~~~~~~ **/
+                        {
+var settingsStorageKey = "vocabQuizSettings_v1";
+
+var saveSettings = function(){
+    try{
+        localStorage.setItem(settingsStorageKey,JSON.stringify({
+            preventClashingAnswerChoices:preventClashingAnswerChoices,
+            ignoreSpanishChars:ignoreSpanishChars,
+            comboWindow:comboWindow,
+            choiceOptionDisplayLength:choiceOptionDisplayLength,
+            autoEnterIfCorrect:autoEnterIfCorrect
+        }));
+    }
+    catch(e){
+        // localStorage might be unavailable (private browsing, sandboxed frame, etc). settings just won't persist.
+    }
+};
+
+var loadSavedSettings = function(){
+    try{
+        var raw = localStorage.getItem(settingsStorageKey);
+        if(!raw){return;}
+        var saved = JSON.parse(raw);
+        if(typeof saved.preventClashingAnswerChoices==="boolean"){preventClashingAnswerChoices=saved.preventClashingAnswerChoices;}
+        if(typeof saved.ignoreSpanishChars==="boolean"){ignoreSpanishChars=saved.ignoreSpanishChars;}
+        if(typeof saved.comboWindow==="number"){comboWindow=constrain(saved.comboWindow,60,600);}
+        if(typeof saved.choiceOptionDisplayLength==="number"){choiceOptionDisplayLength=constrain(saved.choiceOptionDisplayLength,20,150);}
+        if(typeof saved.autoEnterIfCorrect==="boolean"){autoEnterIfCorrect=saved.autoEnterIfCorrect;}
+    }
+    catch(e){
+        // ignore corrupt/inaccessible storage
+    }
+};
+
+// a row with a label on the left and an ON/OFF switch on the right
+var buildToggleSettingRow = function(label,y,getVal,setVal){
+    boxes.push(Box.new(label,20,y,340,44,2,false,"settings label"));
+    buttons.push(Button.new(
+        getVal()?"ON":"OFF",
+        function(){
+            setVal(!getVal());
+            saveSettings();
+            loadScreen("settings",true);
+        },
+        380,y,200,44,1,true,
+        "settings toggle"
+    ));
+};
+
+// a row with a label on the left and a -/value/+ stepper on the right
+var buildStepperSettingRow = function(label,y,getVal,setVal,step,min,max,formatFn){
+    boxes.push(Box.new(label,20,y,340,44,2,false,"settings label"));
+    buttons.push(Button.new(
+        "-",
+        function(){
+            setVal(constrain(getVal()-step,min,max));
+            saveSettings();
+            loadScreen("settings",true);
+        },
+        380,y,45,44,1,true,
+        "settings stepper"
+    ));
+    boxes.push(Box.new(formatFn(getVal()),430,y,100,44,1,true,"settings value"));
+    buttons.push(Button.new(
+        "+",
+        function(){
+            setVal(constrain(getVal()+step,min,max));
+            saveSettings();
+            loadScreen("settings",true);
+        },
+        535,y,45,44,1,true,
+        "settings stepper"
+    ));
+};
+                        }
+
 loadScreen = function(screenType,ignoreHistoryOperations){
     
     activeTextbox = voidTextbox;
@@ -1163,17 +1249,78 @@ loadScreen = function(screenType,ignoreHistoryOperations){
             ));
             break;
         case "settings":
+
+            buildToggleSettingRow(
+                "Auto-submit answer when correct\n(Writing modes)",
+                64,
+                function(){return autoEnterIfCorrect;},
+                function(v){autoEnterIfCorrect=v;}
+            );
+            buildToggleSettingRow(
+                "Avoid similar wrong answer choices\n(4-Choice modes) (just keep this on)",
+                120,
+                function(){return preventClashingAnswerChoices;},
+                function(v){preventClashingAnswerChoices=v;}
+            );
+            buildToggleSettingRow(
+                "Ignore accents (\u00e1\u2192a, \u00f1\u2192n, etc.)\nwhen checking written answers",
+                176,
+                function(){return ignoreSpanishChars;},
+                function(v){ignoreSpanishChars=v;}
+            );
+            buildStepperSettingRow(
+                "Speed combo window (seconds)\n(time before combo resets)",
+                232,
+                function(){return comboWindow;},
+                function(v){comboWindow=v;},
+                30,60,600,
+                function(v){return (v/60).toFixed(1);}
+            );
+            buildStepperSettingRow(
+                "Max answer choice length (characters)\n(longer answers get truncated)",
+                288,
+                function(){return choiceOptionDisplayLength;},
+                function(v){choiceOptionDisplayLength=v;},
+                10,20,150,
+                function(v){return v;}
+            );
+
             buttons.push(Button.new(
-                "No settings.\nOnly confetti",
+                "Confetti LOL",
                 function(){
-                    //loadScreen("learn");
                     for(var i = 0; i<5; i++){
                         confettiBlast(random(4,18),random(50,550),499,random(-1.5,1.5),random(-4,-12),2);
                     }
                 },
-                200,200,200,60,2,true,
-                "enter mode"
+                310,350,270,55,2,true,
+                "settings confetti"
             ));
+            buttons.push(Button.new(
+                "Reset to Defaults",
+                function(){
+                    preventClashingAnswerChoices = settingsDefaults.preventClashingAnswerChoices;
+                    ignoreSpanishChars = settingsDefaults.ignoreSpanishChars;
+                    comboWindow = settingsDefaults.comboWindow;
+                    choiceOptionDisplayLength = settingsDefaults.choiceOptionDisplayLength;
+                    autoEnterIfCorrect = settingsDefaults.autoEnterIfCorrect;
+                    saveSettings();
+                    loadScreen("settings",true);
+                },
+                20,350,270,55,2,true,
+                "settings reset"
+            ));
+
+            
+            // boxes.push(Box.new(
+            //     "Settings",
+            //     20,15,560,40,1,true,
+            //     "settings title"
+            // ));
+            // boxes.push(Box.new(
+            //     "Settings instantly apply and save",
+            //     20,414,560,25,1,true,
+            //     "settings footnote"
+            // ));
             break;
     }
 };
@@ -1610,6 +1757,7 @@ function setup(){
 
     initializeThemes();
     initializeMobileTextInput();
+    loadSavedSettings();
     resetSessionStats();
     applyTheme(theme);
     loadScreen(screen);
