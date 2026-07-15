@@ -1,4 +1,4 @@
-const CACHE_NAME = "verse-quiz-v12";
+const CACHE_NAME = "verse-quiz-v13";
 
 const APP_SHELL = [
     "./",

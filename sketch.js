@@ -2078,3 +2078,22 @@ touchEnded = function(){
     registerPointerRelease();
     return false;
 };
+
+function speak(text) {
+    // 1. Check if the browser supports Text-to-Speech
+    if ('speechSynthesis' in window) {
+        // 2. Cancel any speech currently playing (prevents overlap)
+        window.speechSynthesis.cancel();
+        
+        // 3. Create the speech request
+        let utterance = new SpeechSynthesisUtterance(text);
+        
+        // Optional: Adjust speed (1 is normal, lower is slower, higher is faster)
+        utterance.rate = 1.0; 
+        
+        // 4. Speak!
+        window.speechSynthesis.speak(utterance);
+    } else {
+        console.warn("Text-to-speech is not supported in this browser.");
+    }
+}
